@@ -11,9 +11,39 @@ callFriend = function(){
 
 //code here
 
-
+console.log(callFriend()('435-215-9248'));
 
 /*
 Write a function that accepts a function as it's first argument and returns a new function (which calls the original function that was passed in) that can only ever be executed once.
 Once completed, add a second arguments that allows the function to be executed N number of times. After the function has been called N number of times, console.log('STAHHP');
 */
+
+var allowOnce = function (cb) {
+  var i = 1;
+  var allowedOnce = function () {
+    if (i === 1) {
+      i = i - 1;
+      cb();
+    } else {
+      console.log('STAHHP');
+    }
+  };
+
+  return allowedOnce;
+};
+
+var limitedFunc = allowOnce(function () {
+  console.log('Cool');
+});
+
+var limitedFunc2 = allowOnce(function () {
+  console.log('Cool2');
+});
+
+limitedFunc();
+limitedFunc();
+limitedFunc();
+
+limitedFunc2();
+limitedFunc2();
+limitedFunc2();
