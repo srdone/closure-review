@@ -18,10 +18,10 @@ Write a function that accepts a function as it's first argument and returns a ne
 Once completed, add a second arguments that allows the function to be executed N number of times. After the function has been called N number of times, console.log('STAHHP');
 */
 
-var allowOnce = function (cb) {
-  var i = 1;
-  var allowedOnce = function () {
-    if (i === 1) {
+var allowNTimes = function (cb, limit) {
+  var i = limit;
+  var allowedNTimes = function () {
+    if (i > 0) {
       i = i - 1;
       cb();
     } else {
@@ -29,16 +29,16 @@ var allowOnce = function (cb) {
     }
   };
 
-  return allowedOnce;
+  return allowedNTimes;
 };
 
-var limitedFunc = allowOnce(function () {
+var limitedFunc = allowNTimes(function () {
   console.log('Cool');
-});
+}, 1);
 
-var limitedFunc2 = allowOnce(function () {
+var limitedFunc2 = allowNTimes(function () {
   console.log('Cool2');
-});
+}, 2);
 
 limitedFunc();
 limitedFunc();
